@@ -11,7 +11,7 @@
     <img src="resources/logo.png" alt="Logo" width="500" height="300">
   </a>
 
-  <h2 align="center">TWINSEC3D Simulation: Docker Warehouse Simulation</h2>
+  <h1 align="center">TWINSEC3D Simulation</h1>
 
   <p align="center">
     An advanced warehouse simulation project using Docker containers and Wazuh SIEM platform.
