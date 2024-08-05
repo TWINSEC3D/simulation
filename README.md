@@ -13,9 +13,9 @@
 
   <h1 align="center">TWINSEC3D Simulation</h1>
 
-  <p align="center">
+  <h3 align="center">
     An advanced warehouse simulation project using Docker containers and Wazuh SIEM platform.
-  </p>
+  </h3>
 </div>
 
 <!-- ABOUT THE PROJECT -->
