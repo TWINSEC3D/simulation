@@ -11,7 +11,7 @@
     <img src="resources/logo.png" alt="Logo" width="500" height="250">
   </a>
 
-  <h3 align="center">TWINSEC3D Simulation: Docker Warehouse Simulation</h3>
+  <h2 align="center">TWINSEC3D Simulation: Docker Warehouse Simulation</h2>
 
   <p align="center">
     An advanced warehouse simulation project using Docker containers and Wazuh SIEM platform.
@@ -79,7 +79,7 @@ Ensure you have Docker and Docker Compose installed on your system.
    ```
 4. Start the Docker containers
    ```sh
-   docker-compose up
+   docker-compose up -d
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -124,7 +124,7 @@ If you use this project in your research, please cite our paper:
   author    = {Magdalena Glas and Johannes Rackl and Philip Empl and Günther Pernul},
   title     = {Asset-Centric OT Security Analytics with Digital Twins},
   booktitle = {Submitted to: Proceedings of the 10th IEEE European Symposium on Security and Privacy (EuroS&P 2025)},
-  year      = {2024},
+  year      = {2025},
   location  = {Vienna, Austria},
   date      = {t.b.a}
 }
