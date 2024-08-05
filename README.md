@@ -11,11 +11,11 @@
     <img src="resources/logo.png" alt="Logo" width="500" height="300">
   </a>
 
-  <h1 align="center">TWINSEC3D Simulation</h1>
+  <h1 align="center">TwinSec3D Simulation</h1>
 
-  <h4 align="center">
+  <p align="center">
     An advanced warehouse simulation project using Docker containers and Wazuh SIEM platform.
-  </h4>
+  </p   >
 </div>
 
 <!-- ABOUT THE PROJECT -->
