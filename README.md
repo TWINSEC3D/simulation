@@ -137,6 +137,8 @@ If you use this project in your research, please cite our paper:
 [forks-url]: https://github.com/TWINSEC3D/simulation/network/members
 [stars-shield]: https://img.shields.io/github/stars/TWINSEC3D/simulation.svg?style=for-the-badge
 [stars-url]: https://github.com/TWINSEC3D/simulation/stargazers
-[issues-shield]: https://github.com/TWINSEC3D/simulation/issues
+[issues-shield]: https://img.shields.io/github/issues/TWINSEC3D/simulation.svg?style=for-the-badge
+[issues-url]: https://github.com/TWINSEC3D/simulation/issues
+
 
 
