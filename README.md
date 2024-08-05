@@ -1,4 +1,3 @@
-<a id="readme-top"></a>
 <!-- PROJECT SHIELDS -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -64,11 +63,9 @@ This project provides the source code for a car seat warehouse simulation. It is
 ### Built With
 
 * [Docker](https://www.docker.com/)
-* [Docker Compose](https://docs.docker.com/compose/)
 * [Wazuh](https://wazuh.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -120,31 +117,15 @@ Ensure you have Docker and Docker Compose installed on your system.
    docker-compose up
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this project as a cybersecurity testbed and to simulate a warehouse environment. Additional examples and screenshots can be added to illustrate how the simulation works and how to interact with it.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add Changelog
-- [ ] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
 See the [open issues](https://github.com/TWINSEC3D/simulation/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -161,35 +142,15 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 ## Contact
 
+Magdalena Glas - [magdalena.glas@ur.de](mailto:magdalena.glas@ur.de) - University of Regensburg
+Johannes Rackl - [johannes.rackl@stud.uni-regensburg.de](mailto:johannes.rackl@stud.uni-regensburg.de) - University of Regensburg
 Philip Empl - [philip.empl@ur.de](mailto:philip.empl@ur.de) - University of Regensburg
 
 Project Link: [https://github.com/TWINSEC3D/simulation](https://github.com/TWINSEC3D/simulation)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 ## Citation
 
@@ -199,14 +160,12 @@ If you use this project in your research, please cite our paper:
 @inproceedings{Glas2024,
   author    = {Magdalena Glas and Johannes Rackl and Philip Empl and Günther Pernul},
   title     = {Asset-Centric OT Security Analytics with Digital Twins},
-  booktitle = {9th IEEE European Symposium on Security and Privacy},
+  booktitle = {Submitted to: Proceedings of the 10th IEEE European Symposium on Security and Privacy (EuroS&P 2025)},
   year      = {2024},
   location  = {Vienna, Austria},
-  date      = {July 8-12, 2024}
+  date      = {t.b.a}
 }
 ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/TWINSEC3D/simulation.svg?style=for-the-badge
