@@ -8,7 +8,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/TWINSEC3D/simulation">
-    <img src="img/logo.png" alt="Logo" width="200" height="100">
+    <img src="img/logo.png" alt="Logo" width="600" height="300">
   </a>
 
   <h3 align="center">TWINSEC3D Simulation: Docker Warehouse Simulation</h3>
