@@ -4,109 +4,102 @@ import time
 import json
 import random
 
+class IDPClient:
+    def __init__(self, host="server", port=8080, wait_time=1):
+        self.host = host
+        self.port = port
+        self.wait_time = wait_time
+        self.client_name = 'idp_client'
+        self.id = 1
+        self.client_socket = socket.socket()
 
-def client_program():
-    host = "host.docker.internal"
-    port = 5000
-    # wait for the server to boot the socket
-    waiting_time = 1
-    time.sleep(waiting_time)
-  
-    # create a connection to the server
-    client_socket = socket.socket()
-    client_socket.connect((host, port))
-    client_name = 'idp_client'
+    def start(self):
+        time.sleep(self.wait_time)
+        self.connect_to_server()
+        self.test_connection()
 
-    # test the connection
-    msg_send = client_name
-    json_send = json.dumps(msg_send)
-    pre = time.time()
-    client_socket.send(json_send.encode())
-    generateLog('connection test', 'send', msg_send)
-    json_recv = client_socket.recv(1024).decode()
-    post = time.time()
-    responseTime = post-pre
-    status = responseTimeStatus(responseTime)
-    msg_recv = json.loads(json_recv)
-    generateLog('connection test', 'recv', str(msg_recv))
-    generateLog(status, str(responseTime), '')
+        if self.receive_message() == self.client_name:
+            while True:
+                self.send_seat_data()
+                self.receive_confirmation()
+                self.id += 1
+                time.sleep(90)
 
-    generateLog('connection', '', '')
+        self.disconnect()
 
-    # declare the seat ID variable
-    id = 1
+    def connect_to_server(self):
+        self.client_socket.connect((self.host, self.port))
+        self.log('connection', '', '')
 
-    if msg_recv == 'idp_client':
-        while True:
-            # create a seat ID
-            id_str = str(id).zfill(5)
-          
-            # generate a new seat dataset and send it to the server
-            seatData = generateSeatData(id_str)
-            seatData.update( {'timestamp' : currentTime()} )
-            msg_send = seatData
-            json_send = json.dumps(msg_send)
-            pre = time.time()
-            client_socket.send(json_send.encode())
-            generateLog('seat arrival', 'send', json_send)
-          
-            # receive a confirmation from the server
-            json_recv = client_socket.recv(1024).decode()
-            post = time.time()
-            responseTime = post-pre
-            status = responseTimeStatus(responseTime)
-            msg_recv = json.loads(json_recv)   
-            generateLog('response', 'recv', str(msg_recv))
-            generateLog(status, str(responseTime), '')
+    def test_connection(self):
+        self.send_message(self.client_name)
+        self.log('connection test', 'send', self.client_name)
+        self.receive_message()
 
-            id += 1
-            # wait 90 seconds before generating the next seat dataset
-            time.sleep(90)
+    def send_seat_data(self):
+        seat_data = self.generate_seat_data(str(self.id).zfill(5))
+        self.send_message(seat_data)
+        self.log('seat arrival', 'send', json.dumps(seat_data))
 
-    # close the connection to the server
-    client_socket.close()
-    generateLog('disconnection', '', '')
+    def receive_confirmation(self):
+        message = self.receive_message()
+        self.log('response', 'recv', str(message))
 
-# generate a seat dataset
-def generateSeatData(id_str):
-    colors = ['black', 'brown', 'beige']
-    types = ['front', 'back']
-    weights = [25000, 27000]
-    heights = [1000, 1050, 1100]
-    lengths = [550, 600]
-    widths = [500, 550]
+    def disconnect(self):
+        self.client_socket.close()
+        self.log('disconnection', '', '')
 
-    seatData = {
-        'id': id_str,
-        'color': random.choice(colors),
-        'type': random.choice(types),
-        'weight': random.choice(weights),
-        'height': random.choice(heights),
-        'length': random.choice(lengths),
-        'width': random.choice(widths),
-        'current_loc': 'IDP',
-        'outbound_request' : 'false'
-    }
-    return seatData
+    def send_message(self, message):
+        json_send = json.dumps(message)
+        pre = time.time()
+        self.client_socket.send(json_send.encode())
+        post = time.time()
+        response_time = post - pre
+        status = self.response_time_status(response_time)
+        self.log(status, str(response_time), '')
 
-# get the current timestamp
-def currentTime():
-    return str(datetime.now())[:-7]
+    def receive_message(self):
+        json_recv = self.client_socket.recv(1024).decode()
+        message = json.loads(json_recv)
+        return message
 
-# generate log entries
-def generateLog(status, action, json_str):
-    log = '\n' + datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' ' + status + ' ' + action + ' ' + json_str
-    log_file = open("/var/log/client.log", "a")
-    log_file.write(log)
-    log_file.close()
+    def generate_seat_data(self, id_str):
+        colors = ['black', 'brown', 'beige']
+        types = ['front', 'back']
+        weights = [25000, 27000]
+        heights = [1000, 1050, 1100]
+        lengths = [550, 600]
+        widths = [500, 550]
 
-# define the response time status depending on whether the response time is less or more than one second
-def responseTimeStatus(responseTime):
-    if responseTime <= 1:
-        status = 'response time ok'
-    elif responseTime > 1:
-        status = 'slow response'
-    return status
+        seat_data = {
+            'id': id_str,
+            'color': random.choice(colors),
+            'type': random.choice(types),
+            'weight': random.choice(weights),
+            'height': random.choice(heights),
+            'length': random.choice(lengths),
+            'width': random.choice(widths),
+            'current_loc': 'IDP',
+            'outbound_request': 'false'
+        }
+        seat_data.update({'timestamp': self.current_time()})
+        return seat_data
+
+    @staticmethod
+    def current_time():
+        return str(datetime.now())[:-7]
+
+    @staticmethod
+    def log(status, action, json_str):
+        log = f'\n{datetime.today().strftime("%Y-%m-%d %H:%M:%S")} {status} {action} {json_str}'
+        with open("/var/log/custom.log", "a") as log_file:
+            log_file.write(log)
+
+    @staticmethod
+    def response_time_status(response_time):
+        return 'response time ok' if response_time <= 1 else 'slow response'
+
 
 if __name__ == '__main__':
-    client_program()
+    client = IDPClient()
+    client.start()

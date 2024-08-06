@@ -8,7 +8,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/TWINSEC3D/simulation">
-    <img src="resources/logo.png" alt="Logo" width="500" height="300">
+    <img src="resources/logo.png" alt="Logo" width="400" height="250">
   </a>
 
   <h1 align="center">TwinSec3D Simulation</h1>

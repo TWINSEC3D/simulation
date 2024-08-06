@@ -4,7 +4,7 @@ FROM ubuntu AS base
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
-    procps nano curl gnupg apt-transport-https gnupg2 inotify-tools python3-docker python3-setuptools python3-pip gcc python3-dev musl-dev libpq-dev python3-tk git
+    procps nano curl gnupg apt-transport-https gnupg2 inotify-tools python3-docker python3-setuptools python3-pip gcc python3-dev musl-dev libpq-dev python3-tk git postgresql-client
 
 # Wazuh setup
 RUN curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | \
@@ -20,8 +20,11 @@ RUN curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | \
 # Copy all scripts
 COPY scripts /scripts
 
+# give permissions
+RUN chmod +x /scripts/wait-for-init.sh
+
 # Install Python packages
-RUN pip3 install psycopg2-binary --break-system-packages
+RUN pip3 install psycopg2-binary --break-system-packages sqlalchemy
 
 # Setup Sun-Valley-ttk-theme for HMI
 RUN git clone https://github.com/rdbende/Sun-Valley-ttk-theme.git && \
